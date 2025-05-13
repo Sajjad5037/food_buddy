@@ -9,7 +9,7 @@ function App() {
   // Simulating API call
   useEffect(() => {
     // Replace this URL with the actual API URL later
-    fetch('http://127.0.0.1:8000/restaurants')  // Placeholder URL
+    fetch('https://foodbuddyendpoint-production.up.railway.app/restaurants')  // Placeholder URL
       .then(response => response.json())
       .then(data => {
         setRestaurants(data);       // Update state with restaurant data
