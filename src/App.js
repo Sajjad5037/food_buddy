@@ -1,25 +1,35 @@
 import './App.css';
 
-const dummyRestaurants = [
-  {
-    id: 1,
-    name: "Spice Villa",
-    image: "https://via.placeholder.com/300x200?text=Spice+Villa",
-    description: "Authentic Indian cuisine with a modern twist."
-  },
-  {
-    id: 2,
-    name: "Burger Hub",
-    image: "https://via.placeholder.com/300x200?text=Burger+Hub",
-    description: "Juicy burgers and crispy fries served fresh."
-  },
-  {
-    id: 3,
-    name: "Green Delight",
-    image: "https://via.placeholder.com/300x200?text=Green+Delight",
-    description: "Vegan and vegetarian meals for a healthy lifestyle."
+import React, { useState, useEffect } from 'react';
+import './App.css';
+
+function App() {
+  const [restaurants, setRestaurants] = useState([]);  // State to store fetched restaurant data
+  const [loading, setLoading] = useState(true);         // State to manage loading state
+  const [error, setError] = useState(null);             // State to handle errors
+
+  // Simulating API call
+  useEffect(() => {
+    // Replace this URL with the actual API URL later
+    fetch('http://127.0.0.1:8000/restaurants')  // Placeholder URL
+      .then(response => response.json())
+      .then(data => {
+        setRestaurants(data);       // Update state with restaurant data
+        setLoading(false);          // Set loading to false after data is fetched
+      })
+      .catch(error => {
+        setError(error);            // If error occurs, update the error state
+        setLoading(false);
+      });
+  }, []);  // Empty dependency array to run only once after the initial render
+
+  if (loading) {
+    return <div>Loading...</div>;  // Display loading message
   }
-];
+
+  if (error) {
+    return <div>Error: {error.message}</div>;  // Display error message
+  }
 
 function App() {
   return (
