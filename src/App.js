@@ -1,6 +1,5 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import './App.css';
 
 function App() {
   const [restaurants, setRestaurants] = useState([]);  // State to store fetched restaurant data
@@ -30,12 +29,11 @@ function App() {
     return <div>Error: {error.message}</div>;  // Display error message
   }
 
-function App() {
   return (
     <div className="App" style={{ padding: '20px' }}>
       <h1>Nearby Restaurants</h1>
       <div className="restaurant-list" style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-        {dummyRestaurants.map((restaurant) => (
+        {restaurants.map((restaurant) => (
           <div key={restaurant.id} className="restaurant-card" style={{
             border: '1px solid #ccc',
             borderRadius: '8px',
